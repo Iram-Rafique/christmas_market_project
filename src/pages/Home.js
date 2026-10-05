@@ -147,7 +147,7 @@ function Home() {
 
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-900">
-                  Paisley Town Centre
+                  Paisley Town Center
                 </h3>
 
                 <div className="mt-4 space-y-2 text-gray-600">
@@ -155,7 +155,7 @@ function Home() {
                     <span className="font-medium text-gray-800">
                       Location:
                     </span>{" "}
-                    Paisley Town Centre
+                    Paisley Town Center
                   </p>
 
                   <p>

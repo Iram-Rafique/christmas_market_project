@@ -39,7 +39,7 @@ function Login() {
       localStorage.setItem("token", data.token);
 
       // Go to admin applications page
-      navigate("/admin/applications");
+      navigate("/AdminApplications");
 
     } catch (error) {
       setError("Unable to connect to the server. Please try again.");

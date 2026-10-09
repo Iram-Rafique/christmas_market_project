@@ -17,6 +17,22 @@ router.get("/", async (req, res) => {
     });
   }
 });
+
+router.get("/approved", async (req, res) => {
+  try {
+    const approvedApplications = await Application.find({
+      status: "approved",
+    }).sort({ createdAt: -1 });
+
+    res.json(approvedApplications);
+  } catch (error) {
+    console.error("Error fetching approved traders:", error);
+
+    res.status(500).json({
+      message: "Server error.",
+    });
+  }
+});
 router.get("/:id", async (req, res) => {
   try {
     const application = await Application.findById(req.params.id);

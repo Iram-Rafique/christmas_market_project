@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import AdminApplications from "./pages/AdminApplications";
 import ApplicationDetails from "./pages/ApplicationDetails";
+import ApplicationConfirmation from "./pages/ApplicationConfirmation";
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +30,10 @@ function App() {
           path="/admin/applications/:id"
           element={<ApplicationDetails />}
         />
+        <Route
+  path="/application-confirmation"
+  element={<ApplicationConfirmation />}
+/>
         <Route
   path="/trader-details/:id"
   element={<TraderDetails />}

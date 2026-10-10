@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Apply() {
-  const [successMessage, setSuccessMessage] = useState("");
+   const navigate = useNavigate();
+ 
   const [formData, setFormData] = useState({
     businessName: "",
     contactName: "",
@@ -12,6 +14,7 @@ function Apply() {
     market: "Paisley Christmas Markets",
     tradingInformation: "",
   });
+  
 
   const [errors, setErrors] = useState({});
 
@@ -23,6 +26,7 @@ function Apply() {
       [name]: value,
     });
   };
+
 
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -62,7 +66,8 @@ function Apply() {
     setErrors(newErrors);
     return;
   }
-
+  // Navigate to the confirmation page
+navigate("/application-confirmation");
   try {
     const response = await fetch(
       "http://localhost:5000/api/applications",
@@ -94,7 +99,7 @@ setFormData({
 });
 
 setErrors({});
-setSuccessMessage("Application submitted successfully!");
+// setSuccessMessage("Application submitted successfully!");
     console.log("Application saved:", data);
 
   } catch (error) {
@@ -230,7 +235,7 @@ setSuccessMessage("Application submitted successfully!");
             </div>
           </div>
 
-          {/* Business Details */}
+          {/* business Details */}
           <div className="mb-10">
 
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -315,7 +320,7 @@ setSuccessMessage("Application submitted successfully!");
 
             </div>
 
-            {/* Preferred Trading Information */}
+            {/* preferred trading information */}
             <div>
 
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -355,13 +360,7 @@ setSuccessMessage("Application submitted successfully!");
         </form>
 
       </section>
-{successMessage && (
-  <div className="max-w-4xl mx-auto px-6 mb-6">
-    <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-center">
-      {successMessage}
-    </div>
-  </div>
-)}
+
     </div>
   );
 }

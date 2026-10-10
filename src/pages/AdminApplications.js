@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 function AdminApplications() {
   const navigate = useNavigate();
 
+
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  navigate("/login", { replace: true });
+};
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -52,7 +57,12 @@ function AdminApplications() {
 
           <p className="mt-3 text-gray-600">
             Review submitted vendor applications.
-          </p>
+          </p> <button
+  onClick={handleLogout}
+  className="bg-red-900 text-white px-4 py-2 mt-7 rounded-md hover:bg-red-800"
+>
+  Logout
+</button>
         </div>
 
         {/* Loading */}

@@ -25,7 +25,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/traders", traderRoutes);
 app.use("/api/applications", applicationRoutes);
 
-// Connect to MongoDB
+// connect to mongoDB
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {

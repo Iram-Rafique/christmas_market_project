@@ -189,7 +189,7 @@ const updateStatus = async (newStatus) => {
               Application Status
             </p>
 
-            <span className="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
+            <span className="inline-block bg-gray-100 text-black-700 px-3 py-1 rounded-full text-sm font-medium">
               {application.status}
             </span>
           </div>
@@ -197,14 +197,14 @@ const updateStatus = async (newStatus) => {
 
   <button
     onClick={() => updateStatus("approved")}
-    className="bg-green-600 text-white px-5 py-2 rounded-md hover:bg-green-700"
+    className="bg-green-900 text-white px-5 py-2 rounded-md hover:bg-green-500"
   >
     Approve
   </button>
 
   <button
     onClick={() => updateStatus("rejected")}
-    className="bg-red-600 text-white px-5 py-2 rounded-md hover:bg-red-700"
+    className="bg-red-900 text-white px-5 py-2 rounded-md hover:bg-red-500"
   >
     Reject
   </button>

@@ -147,7 +147,7 @@ function Navbar() {
                 Login
               </a>
 
-              <button
+              {/* <button
                 type="button"
                 className="flex items-center gap-2 text-sm text-gray-800 hover:text-red-600 text-left"
               >
@@ -166,7 +166,7 @@ function Navbar() {
                   />
                 </svg>
                 Search
-              </button>
+              </button> */}
 
             </div>
           </div>

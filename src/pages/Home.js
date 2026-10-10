@@ -93,8 +93,8 @@ function Home() {
               </p>
             </div>
 
-            {/* Local Traders */}
-            {/* Local Traders */}
+        
+            {/* Local traders */}
             <div className="flex flex-col items-center">
               <div className="w-14 h-14 flex items-center justify-center rounded-full bg-red-50 mb-5">
                 <img
@@ -258,7 +258,7 @@ function Home() {
 
           </div>
           {/* Vendor CTA Section */}
-          <section className="bg-red-700 py-14 mt-16">
+          <section className="bg-red-900 py-14 mt-16">
             <div className="max-w-7xl mx-auto px-6 lg:px-10">
               <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
 
@@ -275,9 +275,8 @@ function Home() {
 
                 {/* Button */}
                 <a
-                  href="/apply"
-                  className="inline-flex items-center justify-center px-7 py-3 bg-white text-red-700 font-semibold rounded-md hover:bg-gray-100 transition whitespace-nowrap"
-                >
+                  href="/Apply"
+                   className="inline-flex justify-center items-center px-6 py-3 border border-white text-white font-medium rounded-md hover:bg-white hover:text-gray-900 transition">
                   Apply to Trade
                 </a>
 

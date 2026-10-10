@@ -49,7 +49,7 @@ function Login() {
   };
 
   return (
-    <main className="bg-gray-50 min-h-[calc(100vh-160px)] flex items-center justify-center py-16 px-6">
+    <main className="bg-gray-50 min-h-[calc(100vh-80px)] flex items-center justify-center py-16 px-6">
 
       <div className="w-full max-w-md">
 
@@ -59,17 +59,17 @@ function Login() {
             Admin Login
           </h1>
 
-          <p className="mt-3 text-gray-600">
+          {/* <p className="mt-4 text-gray-600">
             Sign in to manage vendor applications and market information.
-          </p>
+          </p> */}
         </div>
 
-        {/* Login Card */}
-        <div className="bg-white rounded-lg shadow-sm p-8">
+        {/*login Card */}
+        <div className="bg-white rounded-xl shadow-sm p-8">
 
           <form onSubmit={handleSubmit}>
 
-            {/* Error Message */}
+            {/* error message */}
             {error && (
               <div className="mb-6 rounded-md bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
                 {error}
@@ -122,7 +122,7 @@ function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-red-700 text-white py-3 rounded-md font-semibold hover:bg-red-800 transition disabled:bg-red-400 disabled:cursor-not-allowed"
+              className="w-full bg-red-900 text-white py-3 rounded-md font-semibold hover:bg-red-800 transition disabled:bg-red-400 disabled:cursor-not-allowed"
             >
               {loading ? "Signing in..." : "Login"}
             </button>
@@ -138,3 +138,7 @@ function Login() {
 }
 
 export default Login;
+
+
+
+

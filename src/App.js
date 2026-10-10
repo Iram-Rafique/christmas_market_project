@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
 import Traders from "./pages/Traders";
+import TraderDetails from "./pages/TraderDetails";
 import Apply from "./pages/Apply";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
@@ -12,6 +13,7 @@ import ApplicationDetails from "./pages/ApplicationDetails";
 function App() {
   return (
     <BrowserRouter>
+
       <Navbar />
 
       <Routes>
@@ -27,8 +29,13 @@ function App() {
           path="/admin/applications/:id"
           element={<ApplicationDetails />}
         />
+        <Route
+  path="/trader-details/:id"
+  element={<TraderDetails />}
+/>
       </Routes>
       <Footer />
+  
     </BrowserRouter>
 
   );

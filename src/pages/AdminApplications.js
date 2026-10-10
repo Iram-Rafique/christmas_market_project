@@ -135,10 +135,10 @@ function AdminApplications() {
                         <span
                           className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
                             application.status === "approved"
-                              ? "bg-green-100 text-green-700"
+                              ? "bg-green-900 text-white"
                               : application.status === "rejected"
-                              ? "bg-red-100 text-red-700"
-                              : "bg-yellow-100 text-yellow-700"
+                              ? "bg-red-900 text-white"
+                              : "bg-gray-100 text-black-700"
                           }`}
                         >
                           {application.status}

@@ -1,92 +1,55 @@
 const express = require("express");
 const Application = require("../models/Application");
-
-
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
-router.get("/", async (req, res) => {
+
+/* Public: get one approved trader's public details. */
+router.get("/approved/:id", async (req, res) => {
   try {
-    const applications = await Application.find().sort({ createdAt: -1 });
-
-    res.json(applications);
-  } catch (error) {
-    console.error("Error fetching applications:", error);
-
-    res.status(500).json({
-      message: "Server error.",
-    });
-  }
-});
-
-router.get("/approved", async (req, res) => {
-  try {
-    const approvedApplications = await Application.find({
+    const application = await Application.findOne({
+      _id: req.params.id,
       status: "approved",
-    }).sort({ createdAt: -1 });
-
-    res.json(approvedApplications);
-  } catch (error) {
-    console.error("Error fetching approved traders:", error);
-
-    res.status(500).json({
-      message: "Server error.",
-    });
-  }
-});
-router.get("/:id", async (req, res) => {
-  try {
-    const application = await Application.findById(req.params.id);
+    }).select(
+      "businessName category productDescription tradingInformation market"
+    );
 
     if (!application) {
       return res.status(404).json({
-        message: "Application not found.",
+        message: "Approved trader not found.",
       });
     }
 
     res.json(application);
   } catch (error) {
-    console.error("Error fetching application:", error);
+    console.error("Error fetching approved trader details:", error);
 
-    res.status(500).json({
-      message: "Server error.",
+    return res.status(400).json({
+      message: "Invalid trader ID or request.",
     });
   }
 });
-router.patch("/:id/status", async (req, res) => {
+
+// Public: get aproved  for the public Traders page.
+// Return only public fields, never contact details.
+router.get("/approved", async (req, res) => {
   try {
-    const { status } = req.body;
+    const applications = await Application.find({
+      status: "approved",
+    })
+      .select(
+        "businessName category productDescription tradingInformation market"
+      )
+      .sort({ createdAt: -1 });
 
-    if (!["approved", "rejected"].includes(status)) {
-      return res.status(400).json({
-        message: "Invalid application status.",
-      });
-    }
-
-    const application = await Application.findByIdAndUpdate(
-      req.params.id,
-      { status },
-      { new: true }
-    );
-
-    if (!application) {
-      return res.status(404).json({
-        message: "Application not found.",
-      });
-    }
-
-    res.json({
-      message: `Application ${status} successfully.`,
-      application,
-    });
+    res.json(applications);
   } catch (error) {
-    console.error("Error updating application status:", error);
-
-    res.status(500).json({
-      message: "Server error.",
-    });
+    console.error("Error fetching approved traders:", error);
+    res.status(500).json({ message: "Server error." });
   }
 });
 
+// Public: Submit a trader application.
 router.post("/", async (req, res) => {
   try {
     const {
@@ -101,14 +64,14 @@ router.post("/", async (req, res) => {
     } = req.body;
 
     if (
-      !businessName ||
-      !contactName ||
-      !email ||
-      !telephone ||
-      !category ||
-      !productDescription ||
-      !market ||
-      !tradingInformation
+      !businessName?.trim() ||
+      !contactName?.trim() ||
+      !email?.trim() ||
+      !telephone?.trim() ||
+      !category?.trim() ||
+      !productDescription?.trim() ||
+      !market?.trim() ||
+      !tradingInformation?.trim()
     ) {
       return res.status(400).json({
         message: "All required fields must be completed.",
@@ -128,15 +91,85 @@ router.post("/", async (req, res) => {
 
     await application.save();
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Application submitted successfully.",
-      application,
+      application: {
+        id: application._id,
+        businessName: application.businessName,
+        status: application.status,
+      },
     });
   } catch (error) {
     console.error("Error saving application:", error);
+    return res.status(500).json({ message: "Server error." });
+  }
+});
 
-    res.status(500).json({
-      message: "Server error.",
+// Protected: Get all applications for the administrator.
+router.get("/", authMiddleware, async (req, res) => {
+  try {
+    const applications = await Application.find().sort({
+      createdAt: -1,
+    });
+
+    res.json(applications);
+  } catch (error) {
+    console.error("Error fetching applications:", error);
+    res.status(500).json({ message: "Server error." });
+  }
+});
+
+// Protected: Get one application's full details.
+router.get("/:id", authMiddleware, async (req, res) => {
+  try {
+    const application = await Application.findById(req.params.id);
+
+    if (!application) {
+      return res.status(404).json({
+        message: "Application not found.",
+      });
+    }
+
+    res.json(application);
+  } catch (error) {
+    console.error("Error fetching application:", error);
+    res.status(400).json({
+      message: "Invalid application ID or request.",
+    });
+  }
+});
+
+// Protected: Approve or reject an application.
+router.patch("/:id/status", authMiddleware, async (req, res) => {
+  try {
+    const { status } = req.body;
+
+    if (!["approved", "rejected"].includes(status)) {
+      return res.status(400).json({
+        message: "Invalid application status.",
+      });
+    }
+
+    const application = await Application.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true, runValidators: true }
+    );
+
+    if (!application) {
+      return res.status(404).json({
+        message: "Application not found.",
+      });
+    }
+
+    res.json({
+      message: `Application ${status} successfully.`,
+      application,
+    });
+  } catch (error) {
+    console.error("Error updating application status:", error);
+    res.status(400).json({
+      message: "Invalid application ID or request.",
     });
   }
 });

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -10,31 +9,33 @@ function TraderDetails() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/applications/${id}`)
-      .then((response) => {
+    const fetchTrader = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/applications/approved/${id}`
+
+        );
+
+        const data = await response.json();
+
         if (!response.ok) {
           throw new Error(
-            response.status === 404
-              ? "Trader not found."
-              : "Unable to load trader details."
+            data.message || "Unable to load trader details."
           );
         }
 
-        return response.json();
-      })
-      .then((data) => {
-        if (data.status !== "approved") {
-          throw new Error("This trader is not currently approved.");
-        }
-
         setTrader(data);
-        setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Error loading trader details:", err);
-        setError(err.message || "Unable to load trader details.");
+        setError(
+          err.message || "Unable to load trader details."
+        );
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchTrader();
   }, [id]);
 
   if (loading) {
@@ -81,7 +82,7 @@ function TraderDetails() {
         </Link>
 
         <article className="rounded-lg bg-white p-8 shadow-sm">
-          <span className="inline-block rounded-full bg-red-900 px-3 py-1 text-med text-white">
+          <span className="inline-block rounded-full bg-red-900 px-3 py-1 text-sm text-white">
             {trader.category || "Other"}
           </span>
 

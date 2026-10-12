@@ -13,36 +13,50 @@ const handleLogout = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  
+useEffect(() => {
+  const token = localStorage.getItem("token");
 
-    if (!token) {
-      navigate("/admin-login");
-      return;
-    }
+  if (!token) {
+    navigate("/login", { replace: true });
+    return;
+  }
 
-    fetch("http://localhost:5000/api/applications", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+  fetch("http://localhost:5000/api/applications", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 401 || response.status === 403) {
+        localStorage.removeItem("token");
+        navigate("/login", { replace: true });
+        throw new Error("Your session has expired. Please log in again.");
+      }
+
+      if (!response.ok) {
+        throw new Error("Failed to load applications.");
+      }
+
+      return response.json();
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to load applications.");
-        }
-
-        return response.json();
-      })
-      .then((data) => {
+    .then((data) => {
+      if (data) {
         setApplications(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setError("Unable to load applications.");
-        setLoading(false);
-      });
-  }, [navigate]);
+      }
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error(error);
+
+      if (error.message === "Your session has expired. Please log in again.") {
+        return;
+      }
+
+      setError("Unable to load applications.");
+      setLoading(false);
+    });
+}, [navigate]);
 
   return (
     <main className="bg-gray-50 min-h-[calc(100vh-160px)] py-16 px-6">

@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 
 // Authentication routes
 app.use("/api/auth", authRoutes);
-app.use("/api/traders", traderRoutes);
+// app.use("/api/traders", traderRoutes);
 app.use("/api/applications", applicationRoutes);
 
 // connect to mongoDB

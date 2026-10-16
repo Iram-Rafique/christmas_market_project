@@ -47,7 +47,7 @@ function Navbar() {
             </a>
 
             {/* Search Icon */}
-            <button
+            {/* <button
               type="button"
               aria-label="Search"
               className="ml-4 text-gray-700 hover:text-red-600 transition"
@@ -66,7 +66,7 @@ function Navbar() {
                   d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6.05 6.05a7.5 7.5 0 0 0 10.6 10.6Z"
                 />
               </svg>
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Menu Button */}

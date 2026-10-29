@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import API_BASE_URL from "../config/api";
 
 function TraderDetails() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ function TraderDetails() {
     const fetchTrader = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/applications/approved/${id}`
+          `${API_BASE_URL}/api/applications/approved/${id}`
 
         );
 

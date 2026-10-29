@@ -45,28 +45,6 @@ function Navbar() {
             >
               Login
             </a>
-
-            {/* Search Icon */}
-            {/* <button
-              type="button"
-              aria-label="Search"
-              className="ml-4 text-gray-700 hover:text-red-600 transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6.05 6.05a7.5 7.5 0 0 0 10.6 10.6Z"
-                />
-              </svg>
-            </button> */}
           </div>
 
           {/* Mobile Menu Button */}

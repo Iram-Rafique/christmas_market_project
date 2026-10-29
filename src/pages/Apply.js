@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../config/api";
 
 function Apply() {
   const navigate = useNavigate();
@@ -82,7 +83,7 @@ function Apply() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/applications",
+        `${API_BASE_URL}/api/applications`,
         {
           method: "POST",
           headers: {

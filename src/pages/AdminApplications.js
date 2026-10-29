@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API_BASE_URL from "../config/api";
 import { useNavigate } from "react-router-dom";
 
 function AdminApplications() {
@@ -22,7 +23,7 @@ useEffect(() => {
     return;
   }
 
-  fetch("http://localhost:5000/api/applications", {
+  fetch(`${API_BASE_URL}/api/applications`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

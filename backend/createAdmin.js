@@ -1,47 +1,50 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const Admin = require("./models/Admin");
 
-const createAdmin = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
+async function createAdmin() {
+  const email = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+  const password = process.env.ADMIN_PASSWORD;
 
-    console.log("MongoDB connected");
 
-    const email = "admin@paisleymarkets.com";
-    const password = "Admin123!";
-
-    // Check if admin already exists
-    const existingAdmin = await Admin.findOne({ email });
-
-    if (existingAdmin) {
-      console.log("Admin already exists.");
-      process.exit();
-    }
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create admin
-    const admin = new Admin({
-      email,
-      password: hashedPassword,
-      role: "admin",
-    });
-
-    await admin.save();
-
-    console.log("Admin account created successfully.");
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-    process.exit();
-  } catch (error) {
-    console.error("Error creating admin:", error);
-    process.exit(1);
+  if (!process.env.MONGO_URI) {
+    throw new Error("MONGO_URI is missing.");
   }
-};
 
-createAdmin();
+  if (!email || !password) {
+    throw new Error(
+      "ADMIN_EMAIL and ADMIN_PASSWORD are required."
+    );
+  }
+
+  if (password.length <5) {
+    throw new Error("ADMIN_PASSWORD must be at least 5 characters long.");
+  }
+
+  await mongoose.connect(process.env.MONGO_URI);
+
+  const existingAdmin = await Admin.findOne({ email });
+  if (existingAdmin) {
+    console.log("An administrator with this email already exists. No changes were made.");
+    return;
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 12);
+  await Admin.create({ email, password: hashedPassword, role: "admin" });
+
+
+  console.log(`Administrator account created for ${email}.`);
+}
+
+createAdmin()
+  .catch((error) => {
+    console.error("Could not create administrator:", error.message);
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    if (mongoose.connection.readyState !== 0) {
+      await mongoose.disconnect();
+    }
+  });

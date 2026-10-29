@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_BASE_URL from "../config/api";
 
 function Traders() {
   const [traders, setTraders] = useState([]);
@@ -12,8 +13,8 @@ function Traders() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Keep categories consistent across the website.
-  // Add or remove categories here to match Apply.js.
+ 
+  // Add or remove categories 
   
 const categories = [
   "All",
@@ -26,7 +27,7 @@ const categories = [
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/applications/approved")
+    fetch(`${API_BASE_URL}/api/applications/approved`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Unable to load traders.");

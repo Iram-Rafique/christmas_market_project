@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API_BASE_URL from "../config/api";
 import { useNavigate, useParams } from "react-router-dom";
 
 function ApplicationDetails() {
@@ -21,7 +22,7 @@ function ApplicationDetails() {
     const fetchApplication = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/applications/${id}`,
+          `${API_BASE_URL}/api/applications/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -69,7 +70,7 @@ function ApplicationDetails() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/applications/${id}/status`,
+        `${API_BASE_URL}/api/applications/${id}/status`,
         {
           method: "PATCH",
           headers: {

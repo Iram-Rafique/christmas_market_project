@@ -33,6 +33,13 @@ function Navbar() {
             </a>
 
             <a
+                href="/wherepaisley"
+                className="text-sm text-gray-800 hover:text-red-600 transition"
+            >
+              Where
+            </a>
+
+            <a
               href="/apply"
               className="text-sm text-gray-800 hover:text-red-600 transition"
             >
@@ -107,6 +114,13 @@ function Navbar() {
                 className="text-sm text-gray-800 hover:text-red-600"
               >
                 Traders
+              </a>
+
+              <a
+                  href="/wherepaisley"
+                  className="text-sm text-gray-800 hover:text-red-600 transition"
+              >
+                Where
               </a>
 
               <a

@@ -157,7 +157,7 @@ const categories = [
                 className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow flex flex-col"
               >
                 <div className="mb-4">
-                  <span className="inline-block bg-red-900 text-white px-3 py-1 rounded-full text-med">
+                  <span className="inline-block bg-green-900 text-white px-3 py-1 rounded-full text-med">
                     {trader.category || "Other"}
                   </span>
                 </div>

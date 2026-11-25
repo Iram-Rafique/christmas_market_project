@@ -395,7 +395,7 @@ function Apply() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-red-900 text-white py-3.5 rounded-lg font-semibold hover:bg-red-800 transition disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full bg-green-900 text-white py-3.5 rounded-lg font-semibold hover:bg-green-800 transition disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSubmitting ? "Submitting Application..." : "Submit Application"}
           </button>

@@ -26,7 +26,7 @@ function ApplicationConfirmation() {
         <div className="flex flex-col sm:flex-row justify-center gap-3">
           <Link
             to="/"
-            className="bg-red-900 text-white px-6 py-3 rounded-md font-semibold hover:bg-red-800 transition"
+            className="bg-green-900 text-white px-6 py-3 rounded-md font-semibold hover:bg-green-800 transition"
           >
             Back to Home
           </Link>

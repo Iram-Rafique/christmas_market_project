@@ -258,7 +258,7 @@ function Home() {
 
           </div>
           {/* Vendor CTA Section */}
-          <section className="bg-red-900 py-14 mt-16">
+          <section className="bg-green-900 py-14 mt-16">
             <div className="max-w-7xl mx-auto px-6 lg:px-10">
               <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
 

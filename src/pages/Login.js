@@ -133,7 +133,7 @@ return (
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-red-900 text-white py-3 rounded-md font-semibold hover:bg-red-800 transition disabled:bg-red-400 disabled:cursor-not-allowed"
+            className="w-full bg-green-900 text-white py-3 rounded-md font-semibold hover:bg-green-800 transition disabled:bg-red-400 disabled:cursor-not-allowed"
           >
             {loading ? "Signing in..." : "Login"}
           </button>

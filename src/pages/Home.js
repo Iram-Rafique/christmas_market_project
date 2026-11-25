@@ -32,7 +32,7 @@ function Home() {
 
               <a
                 href="/traders"
-                className="inline-flex justify-center items-center px-6 py-3 bg-white text-gray-900 font-medium rounded-md hover:bg-gray-100 transition"
+                className="inline-flex justify-center items-center px-6 py-3 bg-green-900 text-gray-100 font-medium rounded-md hover:bg-green-700 transition"
               >
                 View Traders
               </a>

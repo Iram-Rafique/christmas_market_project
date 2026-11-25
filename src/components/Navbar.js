@@ -33,6 +33,13 @@ function Navbar() {
             </a>
 
             <a
+                href="/wherepaisley"
+                className="text-sm text-gray-800 hover:text-red-600 transition"
+            >
+              Where
+            </a>
+
+            <a
               href="/apply"
               className="text-sm text-gray-800 hover:text-red-600 transition"
             >
@@ -41,7 +48,7 @@ function Navbar() {
 
             <a
               href="/login"
-              className="text-sm text-gray-800 hover:text-red-600 transition"
+              className="text-sm px-6 py-3 bg-green-900 text-gray-100 font-medium rounded-md hover:bg-green-700 transition"
             >
               Login
             </a>
@@ -110,6 +117,13 @@ function Navbar() {
               </a>
 
               <a
+                  href="/wherepaisley"
+                  className="text-sm text-gray-800 hover:text-red-600 transition"
+              >
+                Where
+              </a>
+
+              <a
                 href="/apply"
                 onClick={() => setIsOpen(false)}
                 className="text-sm text-gray-800 hover:text-red-600"
@@ -120,7 +134,7 @@ function Navbar() {
               <a
                 href="/login"
                 onClick={() => setIsOpen(false)}
-                className="text-sm text-gray-800 hover:text-red-600"
+                className="text-sm px-6 py-3 bg-red-900 text-gray-100 font-medium rounded-md hover:bg-gray-100 transition"
               >
                 Login
               </a>

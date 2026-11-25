@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import AdminApplications from "./pages/AdminApplications";
 import ApplicationDetails from "./pages/ApplicationDetails";
 import ApplicationConfirmation from "./pages/ApplicationConfirmation";
+import WherePaisley from "./pages/WherePaisley";
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/traders" element={<Traders />} />
+        <Route path="/wherepaisley" element={<WherePaisley />} />
         <Route path="/apply" element={<Apply />} />
         <Route path="/login" element={<Login />} />
         <Route

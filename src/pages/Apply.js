@@ -2,6 +2,18 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../config/api";
 
+// Keep these in line with backend/validation/applicationValidation.js
+const MAX_LENGTHS = {
+  businessName: 100,
+  contactName: 100,
+  email: 254,
+  telephone: 20,
+  productDescription: 1000,
+  tradingInformation: 500,
+};
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const TELEPHONE_CHARACTERS = /^\+?[0-9\s()-]+$/;
+
 function Apply() {
   const navigate = useNavigate();
 
@@ -53,10 +65,21 @@ function Apply() {
 
     if (!formData.email.trim()) {
       newErrors.email = "Email address is required.";
+    } else if (!EMAIL_PATTERN.test(formData.email.trim())) {
+      newErrors.email = "Please enter a valid email address.";
     }
+
+    const telephoneDigits = formData.telephone.replace(/\D/g, "").length;
 
     if (!formData.telephone.trim()) {
       newErrors.telephone = "Telephone number is required.";
+    } else if (
+      !TELEPHONE_CHARACTERS.test(formData.telephone.trim()) ||
+      telephoneDigits < 10 ||
+      telephoneDigits > 15
+    ) {
+      newErrors.telephone =
+        "Please enter a valid telephone number (10 to 15 digits).";
     }
 
     if (!formData.category) {
@@ -104,6 +127,11 @@ function Apply() {
       const data = await response.json();
 
       if (!response.ok) {
+        // Show the backend's message for each field next to that field.
+        if (data.errors) {
+          setErrors(data.errors);
+        }
+
         throw new Error(
           data.message || "Failed to submit your application."
         );
@@ -165,6 +193,7 @@ function Apply() {
                   id="businessName"
                   type="text"
                   name="businessName"
+                  maxLength={MAX_LENGTHS.businessName}
                   value={formData.businessName}
                   onChange={handleChange}
                   required
@@ -192,6 +221,7 @@ function Apply() {
                   id="contactName"
                   type="text"
                   name="contactName"
+                  maxLength={MAX_LENGTHS.contactName}
                   value={formData.contactName}
                   onChange={handleChange}
                   required
@@ -219,6 +249,7 @@ function Apply() {
                   id="email"
                   type="email"
                   name="email"
+                  maxLength={MAX_LENGTHS.email}
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -246,6 +277,7 @@ function Apply() {
                   id="telephone"
                   type="tel"
                   name="telephone"
+                  maxLength={MAX_LENGTHS.telephone}
                   value={formData.telephone}
                   onChange={handleChange}
                   required
@@ -312,6 +344,7 @@ function Apply() {
               <textarea
                 id="productDescription"
                 name="productDescription"
+                maxLength={MAX_LENGTHS.productDescription}
                 value={formData.productDescription}
                 onChange={handleChange}
                 required
@@ -365,6 +398,7 @@ function Apply() {
               <textarea
                 id="tradingInformation"
                 name="tradingInformation"
+                maxLength={MAX_LENGTHS.tradingInformation}
                 value={formData.tradingInformation}
                 onChange={handleChange}
                 required

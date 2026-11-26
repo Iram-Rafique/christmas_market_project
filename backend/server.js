@@ -8,6 +8,9 @@ const authRoutes = require("./routes/authRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
 
 const app = express();
+// Render sits behind a proxy. This lets the rate limiter
+// see each visitor's real IP address instead of the proxy's.
+app.set("trust proxy", 1);
 
 // CORS: allow only the configured frontend origins.
 // Set ALLOWED_ORIGINS in backend/.env, separated by commas.
@@ -33,7 +36,7 @@ app.use(
     },
   })
 );
-app.use(express.json());
+app.use(express.json({ limit: "20kb" }));
 
 // Test route
 app.get("/", (req, res) => {
@@ -60,10 +63,9 @@ app.use((error, req, res, next) => {
     return res.status(400).json({ message: "Request body contains invalid JSON." });
   }
 
-  if (error.message === "Not allowed by CORS") {
-    return res.status(403).json({ message: "This origin is not allowed to access the API." });
+  if (error.type === "entity.too.large") {
+    return res.status(413).json({ message: "Request is too large." });
   }
-
   console.error("Unhandled request error:", error.message);
   return res.status(500).json({ message: "An unexpected error occurred. Please try again." });
 });

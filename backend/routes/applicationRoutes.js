@@ -1,6 +1,7 @@
 const express = require("express");
 const Application = require("../models/Application");
 const authMiddleware = require("../middleware/authMiddleware");
+const { applicationLimiter } = require("../middleware/rateLimiters");
 
 const router = express.Router();
 
@@ -50,7 +51,7 @@ router.get("/approved", async (req, res) => {
 });
 
 // Public: Submit a trader application.
-router.post("/", async (req, res) => {
+router.post("/", applicationLimiter, async (req, res) => {
   try {
     const {
       businessName,

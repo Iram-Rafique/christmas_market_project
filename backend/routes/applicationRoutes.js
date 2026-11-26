@@ -150,10 +150,10 @@ router.patch("/:id/status", authMiddleware, async (req, res) => {
       });
     }
 
-    const application = await Application.findByIdAndUpdate(
+      const application = await Application.findByIdAndUpdate(
       req.params.id,
       { status },
-      { new: true, runValidators: true }
+      { returnDocument: "after", runValidators: true }
     );
 
     if (!application) {

@@ -8,12 +8,11 @@ const authRoutes = require("./routes/authRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
 
 const app = express();
-// Render sits behind a proxy. This lets the rate limiter
+// render sits behind a proxy. This lets the rate limiter
 // see each visitor's real IP address instead of the proxy's.
 app.set("trust proxy", 1);
 
-// CORS: allow only the configured frontend origins.
-// Set ALLOWED_ORIGINS in backend/.env, separated by commas.
+// set ALLOWED_ORIGINS in backend/.env, separated by commas.
 
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:3000")
   .split(",")
@@ -23,7 +22,7 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:3000")
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Requests without an Origin header (e.g. curl or server-to-server calls)
+      // requests without an Origin header (e.g. curl or server-to-server calls)
       // are not browser CORS requests, so they can proceed to normal route checks.
       if (!origin) return callback(null, true);
 
@@ -38,24 +37,24 @@ app.use(
 );
 app.use(express.json({ limit: "20kb" }));
 
-// Test route
+// test route
 app.get("/", (req, res) => {
   res.json({
     message: "Paisley Christmas Markets API is running",
   });
 });
 
-// Authentication routes
+// authentication routes
 app.use("/api/auth", authRoutes);
 // app.use("/api/traders", traderRoutes);
 app.use("/api/applications", applicationRoutes);
 
-// Return a predictable JSON response for unknown API routes.
+//return a predictable JSON response for unknown API routes.
 app.use((req, res) => {
   return res.status(404).json({ message: "Endpoint not found." });
 });
 
-// Handle malformed JSON and CORS errors without exposing internal details.
+// handle malformed JSON and CORS errors without exposing internal details.
 app.use((error, req, res, next) => {
   if (res.headersSent) return next(error);
 

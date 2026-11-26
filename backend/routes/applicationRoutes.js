@@ -5,7 +5,7 @@ const { applicationLimiter } = require("../middleware/rateLimiters");
 
 const router = express.Router();
 
-/* Public: get one approved trader's public details. */
+/*public: get one approved trader's public details. */
 router.get("/approved/:id", async (req, res) => {
   try {
     const application = await Application.findOne({
@@ -31,8 +31,8 @@ router.get("/approved/:id", async (req, res) => {
   }
 });
 
-// Public: get aproved  for the public Traders page.
-// Return only public fields, never contact details.
+// public: get aproved  for the public Traders page.
+// return only public fields, never contact details.
 router.get("/approved", async (req, res) => {
   try {
     const applications = await Application.find({
@@ -50,7 +50,7 @@ router.get("/approved", async (req, res) => {
   }
 });
 
-// Public: Submit a trader application.
+// public: submit a trader application.
 router.post("/", applicationLimiter, async (req, res) => {
   try {
     const {
@@ -106,7 +106,7 @@ router.post("/", applicationLimiter, async (req, res) => {
   }
 });
 
-// Protected: Get all applications for the administrator.
+// protected: get all applications for the administrator.
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const applications = await Application.find().sort({
@@ -120,7 +120,7 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
-// Protected: Get one application's full details.
+// protected: Get one application's full details.
 router.get("/:id", authMiddleware, async (req, res) => {
   try {
     const application = await Application.findById(req.params.id);
@@ -140,7 +140,7 @@ router.get("/:id", authMiddleware, async (req, res) => {
   }
 });
 
-// Protected: Approve or reject an application.
+// protected: Approve or reject an application.
 router.patch("/:id/status", authMiddleware, async (req, res) => {
   try {
     const { status } = req.body;

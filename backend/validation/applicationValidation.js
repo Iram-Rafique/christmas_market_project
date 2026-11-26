@@ -1,4 +1,4 @@
-// Validation rules for trader applications.
+// validation rules for trader applications.
 
 const CATEGORIES = [
   "Food & Drink",
@@ -8,7 +8,7 @@ const CATEGORIES = [
   "Clothing",
 ];
 
-// Maximum number of characters allowed in each field.
+// maximum number of characters allowed in each field.
 const MAX_LENGTHS = {
   businessName: 100,
   contactName: 100,
@@ -46,7 +46,7 @@ function validateApplication(body = {}) {
   for (const field of Object.keys(MAX_LENGTHS)) {
     const raw = body[field];
 
-    // Reject anything that is not plain text (e.g. objects or arrays).
+    // reject anything that is not plain text (e.g. objects or arrays).
     if (raw !== undefined && raw !== null && typeof raw !== "string") {
       errors[field] = `${LABELS[field]} must be text.`;
       continue;

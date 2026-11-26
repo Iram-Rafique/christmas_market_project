@@ -1,17 +1,17 @@
 function WherePaisley() {
     return (
         <main>
-            {/* Hero Section */}
+            {/* hero Section */}
             <section
                 className="relative min-h-[550px] bg-cover bg-center flex items-center"
                 style={{
                     backgroundImage: "url('/images/paisley.jpg')",
                 }}
             >
-                {/* Dark overlay */}
+                {/* dark overlay */}
                 <div className="absolute inset-0 bg-black/60"></div>
 
-                {/* Hero Content */}
+                {/* hero Content */}
                 <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-10">
                     <div className="max-w-xl text-white">
 
@@ -29,7 +29,7 @@ function WherePaisley() {
                     </div>
                 </div>
             </section>
-            {/* Features Section */}
+            {/* features Section */}
             <section className="bg-white py-16">
                 <div className="mx-auto px-6 lg:px-10">
                     <h2 className="text-5xl md:text-6xl font-bold leading-tight m-1.5">The Heart of Paisley</h2>
@@ -51,12 +51,12 @@ function WherePaisley() {
                         </p>
                     </div>
 
-                    {/* Bus Cards */}
+                    {/* bus Cards */}
                     <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
 
-                            {/* Public Transport, Bus */}
+                            {/* public Transport, Bus */}
                             <div className="flex flex-col items-center">
                                 <div className="w-14 h-14 flex items-center justify-center rounded-full bg-red-50 mb-5">
                                     <img

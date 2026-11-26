@@ -14,7 +14,7 @@ function Traders() {
   const [error, setError] = useState("");
 
  
-  // Add or remove categories 
+  // add or remove categories 
   
 const categories = [
   "All",
@@ -87,7 +87,7 @@ const categories = [
   return (
     <main className="bg-gray-50 min-h-[calc(100vh-160px)] py-16 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
+        {/* header */}
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
             Our Traders
@@ -97,7 +97,7 @@ const categories = [
           </p>
         </div>
 
-        {/* Search and category filter */}
+        {/* search and category filter */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>

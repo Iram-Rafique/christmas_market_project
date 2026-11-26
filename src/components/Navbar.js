@@ -8,7 +8,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="h-20 flex items-center justify-between">
 
-          {/* Logo / Site Name */}
+          {/* logo / site name */}
           <a
             href="/"
             className="text-sm font-medium text-gray-800"
@@ -16,7 +16,7 @@ function Navbar() {
             Paisley Christmas Markets
           </a>
 
-          {/* Desktop Navigation */}
+          {/* desktop navigation */}
           <div className="hidden md:flex items-center gap-6">
             <a
               href="/"
@@ -54,7 +54,7 @@ function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* mobile Menu Button */}
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
@@ -138,27 +138,6 @@ function Navbar() {
               >
                 Login
               </a>
-
-              {/* <button
-                type="button"
-                className="flex items-center gap-2 text-sm text-gray-800 hover:text-red-600 text-left"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6.05 6.05a7.5 7.5 0 0 0 10.6 10.6Z"
-                  />
-                </svg>
-                Search
-              </button> */}
 
             </div>
           </div>

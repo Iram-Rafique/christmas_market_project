@@ -1,17 +1,17 @@
 function Home() {
   return (
     <main>
-      {/* Hero Section */}
+      {/* hero Section */}
       <section
         className="relative min-h-[550px] bg-cover bg-center flex items-center"
         style={{
           backgroundImage: "url('/images/christmas.jpg')",
         }}
       >
-        {/* Dark overlay */}
+        {/* dark overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
-        {/* Hero Content */}
+        {/* hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-10">
           <div className="max-w-xl text-white">
 
@@ -27,7 +27,7 @@ function Home() {
               in the heart of Paisley
             </p>
 
-            {/* Buttons */}
+            {/* buttons */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
 
               <a
@@ -48,13 +48,13 @@ function Home() {
           </div>
         </div>
       </section>
-      {/* Features Section */}
+      {/* features Section */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
 
-            {/* Unique Gifts */}
+            {/* unique Gifts */}
             <div className="flex flex-col items-center">
               <div className="w-14 h-14 flex items-center justify-center rounded-full bg-red-50 mb-5">
                 <img
@@ -94,7 +94,7 @@ function Home() {
             </div>
 
         
-            {/* Local traders */}
+            {/* local traders */}
             <div className="flex flex-col items-center">
               <div className="w-14 h-14 flex items-center justify-center rounded-full bg-red-50 mb-5">
                 <img
@@ -116,11 +116,11 @@ function Home() {
           </div>
         </div>
       </section>
-      {/* Markets Section */}
+      {/*markets Section */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-          {/* Section Heading */}
+          {/* section Heading */}
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Explore Our Markets
@@ -131,10 +131,10 @@ function Home() {
             </p>
           </div>
 
-          {/* Market Cards */}
+          {/* market Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            {/* Card 1 */}
+            {/* card 1 */}
             <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
 
               <div className="h-52 bg-gray-200">
@@ -257,12 +257,12 @@ function Home() {
             </div>
 
           </div>
-          {/* Vendor CTA Section */}
+          {/* vendor CTA Section */}
           <section className="bg-green-900 py-14 mt-16">
             <div className="max-w-7xl mx-auto px-6 lg:px-10">
               <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
 
-                {/* Text */}
+                {/* text */}
                 <div className="text-white">
                   <h2 className="text-2xl md:text-3xl font-bold">
                     INTERESTED IN TRADING WITH US?
@@ -273,7 +273,7 @@ function Home() {
                   </p>
                 </div>
 
-                {/* Button */}
+                {/* button */}
                 <a
                   href="/Apply"
                    className="inline-flex justify-center items-center px-6 py-3 border border-white text-white font-medium rounded-md hover:bg-white hover:text-gray-900 transition">

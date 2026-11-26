@@ -23,7 +23,7 @@ router.post("/login", loginLimiter, async (req, res) => {
       });
     }
 
-    // Find administrator
+    // find administrator
     const admin = await Admin.findOne({
       email: email.trim().toLowerCase(),
     });
@@ -43,7 +43,7 @@ router.post("/login", loginLimiter, async (req, res) => {
       });
     }
 
-    // Create JWT
+    // create JWT
     const token = jwt.sign(
       {
         id: admin._id,

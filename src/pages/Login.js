@@ -36,10 +36,10 @@ function Login() {
         return;
       }
 
-      // Store authentication token
+      // store authentication token
       localStorage.setItem("token", data.token);
 
-      // Go to admin applications page
+      // go to admin applications page
       navigate("/AdminApplications");
 
     } catch (error) {
@@ -67,25 +67,25 @@ return (
   <main className="bg-gray-50 min-h-[calc(100vh-80px)] flex items-center justify-center py-16 px-6">
     <div className="w-full max-w-md">
 
-      {/* Heading */}
+      {/* heading */}
       <div className="text-center mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
           Admin Login
         </h1>
       </div>
 
-      {/* Login Card */}
+      {/* login Card */}
       <div className="bg-white rounded-xl shadow-sm p-8">
         <form onSubmit={handleSubmit} autoComplete="off">
 
-          {/* Error message */}
+          {/* error message */}
           {error && (
             <div className="mb-6 rounded-md bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
               {error}
             </div>
           )}
 
-          {/* Email */}
+          {/* email */}
           <div className="mb-5">
             <label
               htmlFor="email"
@@ -129,7 +129,7 @@ return (
             />
           </div>
 
-          {/* Login Button */}
+          {/* login Button */}
           <button
             type="submit"
             disabled={loading}

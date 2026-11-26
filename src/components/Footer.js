@@ -6,7 +6,7 @@ function Footer() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
-          {/* About */}
+          {/* about */}
           <div>
             <h2 className="text-lg font-semibold text-white">
               Paisley Christmas Markets
@@ -18,7 +18,7 @@ function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* quick Links */}
           <div>
             <h2 className="text-lg font-semibold text-white">
               Quick Links
@@ -67,7 +67,7 @@ function Footer() {
 
         </div>
 
-        {/* Bottom */}
+        {/* bottom */}
         <div className="mt-10 pt-6 border-t border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4">
 
           <p className="text-sm text-gray-500">
